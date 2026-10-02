@@ -29,9 +29,15 @@ def _fixture_businesses() -> list[Business]:
 
 
 def _bigquery_client() -> bigquery.Client | None:
-    if bigquery is None or not os.getenv("BIGQUERY_PROJECT") or os.getenv("GEOOPPORTUNITY_USE_BIGQUERY") != "1":
+    if os.getenv("GEOOPPORTUNITY_USE_BIGQUERY") != "1":
         return None
-    return bigquery.Client(project=os.environ["BIGQUERY_PROJECT"])
+    project = os.getenv("BIGQUERY_PROJECT")
+    dataset = os.getenv("BIGQUERY_DATASET")
+    if not project or not dataset:
+        raise RuntimeError("BIGQUERY_PROJECT and BIGQUERY_DATASET are required when GEOOPPORTUNITY_USE_BIGQUERY=1")
+    if bigquery is None:
+        raise RuntimeError("BigQuery SDK is not installed; install apps/api/requirements.txt")
+    return bigquery.Client(project=project)
 
 
 def businesses() -> list[Business]:

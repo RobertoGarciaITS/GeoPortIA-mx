@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.models.schemas import NearbyResponse
+from app.models.schemas import Business, Municipality, NearbyResponse
 from app.services.data import businesses, municipality, nearby
 
 app = FastAPI(title="GeoOpportunity MX API", version="0.1.0")
@@ -13,17 +13,17 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.get("/api/municipality")
+@app.get("/api/municipality", response_model=Municipality)
 def get_municipality():
     return municipality()
 
 
-@app.get("/api/businesses")
+@app.get("/api/businesses", response_model=list[Business])
 def get_businesses():
     return businesses()
 
 
-@app.get("/api/businesses/{business_id}")
+@app.get("/api/businesses/{business_id}", response_model=Business)
 def get_business(business_id: str):
     result = next((item for item in businesses() if item.business_id == business_id), None)
     if result is None:

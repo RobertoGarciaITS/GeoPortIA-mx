@@ -121,6 +121,8 @@ pytest -q apps/api/tests
 
 El caso determinista usa `lat=25.438`, `lng=-100.973`, `radius_m=2000` y espera 5 negocios. Consulta [docs/VALIDATION.md](docs/VALIDATION.md) para el gate completo.
 
+Para ejecutar la matriz QA, revisar [docs/API_QA.md](docs/API_QA.md).
+
 ## Documentación oficial de referencia
 
 ### Cartografía y APIs de INEGI
