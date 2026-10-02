@@ -17,11 +17,35 @@ function App() {
   const [mapReady, setMapReady] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   useEffect(() => { Promise.all([fetch(`${API}/api/businesses`).then(r=>r.json()), fetch(`${API}/api/municipality`).then(r=>r.json())]).then(([b,m])=>{setBusinesses(b);setMunicipality(m)}).catch(()=>setError("No se pudo conectar con la API.")); }, []);
-  useEffect(() => { const timer = window.setInterval(() => { if (window.google) { setMapReady(true); window.clearInterval(timer); } }, 250); return () => window.clearInterval(timer); }, []);
+  useEffect(() => {
+    const key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    if (!key) return;
+    if (window.google) { setMapReady(true); return; }
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&v=weekly&loading=async`;
+    script.async = true;
+    script.onload = () => setMapReady(true);
+    script.onerror = () => setError("No se pudo cargar Google Maps.");
+    document.head.appendChild(script);
+  }, []);
   useEffect(() => {
     const key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     if (!key || !mapRef.current || !businesses.length || !window.google || !mapReady) return;
     const map = new window.google.maps.Map(mapRef.current, { center: {lat:25.438,lng:-100.973}, zoom:12, mapTypeControl:false, streetViewControl:false });
+    const inegiMunicipal = new window.google.maps.ImageMapType({
+      tileSize: new window.google.maps.Size(256, 256),
+      opacity: 0.72,
+      name: "Municipios INEGI",
+      getTileUrl: (coord: any, zoom: number) => {
+        const projection = map.getProjection();
+        const scale = Math.pow(2, zoom);
+        const sw = projection.fromPointToLatLng(new window.google.maps.Point(coord.x * 256 / scale, (coord.y + 1) * 256 / scale));
+        const ne = projection.fromPointToLatLng(new window.google.maps.Point((coord.x + 1) * 256 / scale, coord.y * 256 / scale));
+        const bbox = [sw.lng(), sw.lat(), ne.lng(), ne.lat()].join(",");
+        return `https://mapas.inegi.org.mx/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&LAYERS=Sitio_Inegi%3AMunicipal&STYLES=estatal&WIDTH=256&HEIGHT=256&BBOX=${bbox}`;
+      }
+    });
+    map.overlayMapTypes.push(inegiMunicipal);
     businesses.forEach((b) => new window.google.maps.Marker({map, position:{lat:b.latitude,lng:b.longitude}, title:b.name}));
     new window.google.maps.Circle({map, center:{lat:25.438,lng:-100.973}, radius, strokeColor:"#f1b86b", fillColor:"#f1b86b", fillOpacity:.12});
   }, [businesses, radius, mapReady]);
