@@ -1,6 +1,90 @@
 # AGENTS.md
 
-- Mantener el alcance V0.1: Saltillo, 10 negocios y una consulta de radio.
-- No agregar scoring, IA, autenticación, PostGIS, Redis, GKE o nuevas fuentes sin change request.
-- No comprometer secretos. Usar `.env.example` como contrato de configuración.
-- Ejecutar `pytest` para API y `npm run build` para frontend antes de entregar cambios.
+## Objetivo
+
+GeoOpportunity MX V0.1 valida un vertical slice geoespacial: Saltillo, 10 negocios, una consulta de proximidad, una API REST y un mapa web. El contrato autoritativo es `GEOOPPORTUNITY-BASELINE-001`.
+
+## Reglas de alcance
+
+- Mantener el alcance V0.1: un municipio, diez negocios y una consulta espacial.
+- No agregar scoring, IA, machine learning, autenticación, pagos, Google Places, Google Routes, PostGIS, Redis, GKE, streaming, app móvil o cobertura nacional sin change request.
+- Si una mejora cambia fuentes, APIs, bases de datos, niveles geográficos o despliegue, documentar rationale, impacto y versión del baseline.
+- No declarar BigQuery, Google Maps o Cloud Run como operativos sin evidencia ejecutada.
+
+## Fuentes oficiales que deben preferirse
+
+- Cartografía y capas: [INEGI API de mapas](https://www.inegi.org.mx/servicios/api_map.html) y [MxSIG](https://www.inegi.org.mx/servicios/mxsig.html).
+- Negocios: [API DENUE](https://www.inegi.org.mx/servicios/api_denue.html).
+- Claves territoriales: [Catálogo Único de Claves Geoestadísticas](https://www.inegi.org.mx/servicios/catalogounico.html).
+- Mapa web: [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview?hl=es-419).
+- Análisis: [BigQuery geoespacial](https://cloud.google.com/bigquery/docs/geospatial-data) y [funciones `GEOGRAPHY`](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions).
+
+## Contratos técnicos
+
+### Datos
+
+- Usar `longitude`, `latitude` y `ST_GEOGPOINT(longitude, latitude)` para puntos.
+- Guardar geometrías analíticas como BigQuery `GEOGRAPHY`.
+- Usar `ST_ASGEOJSON` solo al preparar una respuesta para el frontend.
+- Conservar `source`, `source_record_id`, fecha y claves territoriales.
+- No reemplazar geometría oficial por polígonos dibujados a mano en datos productivos.
+
+### Consultas espaciales
+
+- La distancia de `ST_DWITHIN` está en metros.
+- Para el caso baseline usar parámetros: `@lat`, `@lng`, `@radius_m`.
+- Mantener la consulta parametrizada; nunca interpolar entrada del usuario en SQL.
+- Preferir tablas persistidas con `GEOGRAPHY` y clustering geográfico cuando el volumen crezca.
+- Validar al menos un resultado independientemente de la API.
+
+### API FastAPI
+
+- Definir rutas en `apps/api/app/main.py` o módulos de rutas coherentes.
+- Usar modelos Pydantic para respuestas y parámetros.
+- Mantener `/health` sin dependencia de BigQuery.
+- Conservar `/docs`, `/redoc` y `/openapi.json` funcionando.
+- Devolver `404` para negocios inexistentes y errores de validación HTTP estándar para coordenadas/radios inválidos.
+- Consultar [FastAPI First Steps](https://fastapi.tiangolo.com/tutorial/first-steps/) antes de introducir patrones nuevos.
+
+### Frontend y mapas
+
+- Usar React + TypeScript + Vite; consultar [React Learn](https://react.dev/learn) y la [guía de Vite](https://vite.dev/guide/).
+- Cargar Google Maps con una clave restringida y nunca incluir claves en código, commits o logs.
+- Consumir WMS de INEGI como capa cartográfica; consumir la API propia para negocios y análisis.
+- Mantener coordenadas en WGS84 para consultas y dejar la reproyección visual al mapa.
+- Usar la documentación de [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/add-google-map?hl=es) y su [referencia](https://developers.google.com/maps/documentation/javascript/reference?hl=es).
+
+## Configuración y secretos
+
+- Copiar `.env.example` a `.env` solo localmente.
+- Nunca cometer `.env`, credenciales JSON, tokens, API keys reales ni service accounts.
+- Restringir `VITE_GOOGLE_MAPS_API_KEY` por referrer y APIs habilitadas.
+- Usar IAM de mínimo privilegio para BigQuery.
+
+## Validación obligatoria antes de entregar
+
+```bash
+$env:PYTHONPATH="apps/api"
+pytest -q apps/api/tests
+python -m compileall -q apps/api
+cd apps/web
+npm run build
+```
+
+Además:
+
+- Revisar `git diff --check`.
+- Verificar que `/health` responde.
+- Verificar que `/api/businesses` devuelve exactamente 10 registros en V0.1.
+- Verificar que `/api/nearby` coincide con la validación independiente.
+- Si se modifican mapas, revisar visualmente la capa INEGI, marcadores, radio, leyenda y panel.
+- Documentar cualquier prueba no ejecutada y la razón.
+
+## Flujo de cambio
+
+1. Leer el contrato y la documentación oficial relevante.
+2. Inspeccionar el código y las pruebas existentes.
+3. Implementar el cambio mínimo dentro del alcance.
+4. Ejecutar pruebas y validaciones.
+5. Actualizar documentación y `.env.example` si cambia la configuración.
+6. Crear un commit descriptivo; hacer push solo cuando el usuario lo autorice.
