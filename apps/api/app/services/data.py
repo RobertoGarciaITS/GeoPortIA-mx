@@ -63,7 +63,7 @@ def municipality() -> Municipality:
         cvegeo="05030",
         municipality_name="Saltillo",
         state_name="Coahuila de Zaragoza",
-        source="INEGI-derived reference geometry",
+        source="INEGI. Marco Geoestadístico, diciembre de 2025",
         geometry=geometry,
     )
 

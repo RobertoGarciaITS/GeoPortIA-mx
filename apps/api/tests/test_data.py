@@ -28,7 +28,8 @@ def test_nearby_zero_radius_is_rejected_at_api_but_service_is_precise():
 def test_municipality_service_returns_reference_geometry():
     result = municipality()
     assert result.cvegeo == "05030"
-    assert result.geometry["type"] == "Polygon"
+    assert result.geometry["type"] in {"Polygon", "MultiPolygon"}
+    assert result.source == "INEGI. Marco Geoestadístico, diciembre de 2025"
 
 
 def test_bigquery_mode_requires_project_and_dataset(monkeypatch):

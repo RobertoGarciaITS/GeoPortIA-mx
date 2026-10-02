@@ -15,13 +15,14 @@ Implementado y publicado en `main`:
 
 - API FastAPI con health check, municipio, negocios, detalle y proximidad.
 - Fixture controlado de exactamente 10 negocios.
+- Geometría oficial de Saltillo (`cvegeo=05030`) del Marco Geoestadístico INEGI, diciembre de 2025.
 - SQL BigQuery GIS con `ST_DWITHIN`.
 - Frontend React + TypeScript + Vite.
 - Integración preparada con Google Maps JavaScript API.
 - Capa WMS municipal de INEGI: `Sitio_Inegi:Municipal`.
 - Dockerfile, Dev Container, CI y documentación de validación.
 
-Pendiente para declarar V0.1 validado: configurar credenciales GCP/Maps, cargar geometría oficial de INEGI, ejecutar BigQuery y publicar Cloud Run.
+Pendiente para declarar V0.1 validado: configurar credenciales GCP/Maps, cargar las tablas a BigQuery, ejecutar la integración real y publicar Cloud Run.
 
 ## Estructura
 

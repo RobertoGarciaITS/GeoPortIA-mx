@@ -25,8 +25,8 @@ def test_municipality_has_geojson_geometry():
     payload = response.json()
     assert payload["cvegeo"] == "05030"
     assert payload["municipality_name"] == "Saltillo"
-    assert payload["geometry"]["type"] == "Polygon"
-    assert len(payload["geometry"]["coordinates"][0]) >= 4
+    assert payload["geometry"]["type"] in {"Polygon", "MultiPolygon"}
+    assert len(payload["geometry"]["coordinates"]) >= 1
 
 
 def test_business_detail_returns_expected_schema():

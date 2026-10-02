@@ -11,7 +11,7 @@ Esta guía deja la API lista para copiar, configurar y ejecutar. La suite actual
 | Disponibilidad | `/health` responde `200` y `status=ok` |
 | Contrato OpenAPI | Las cinco rutas baseline están publicadas |
 | Datos | Existen exactamente 10 negocios, con IDs únicos y coordenadas válidas |
-| Municipio | `cvegeo=05030`, Saltillo y geometría GeoJSON tipo `Polygon` |
+| Municipio | `cvegeo=05030`, Saltillo y geometría GeoJSON tipo `Polygon` o `MultiPolygon` |
 | Detalle | Un negocio válido responde y uno inexistente responde `404` |
 | Validación | Coordenadas y radio fuera de rango responden `422` |
 | Proximidad | El caso de 2 km devuelve 5 negocios y el punto exacto devuelve 1 |
@@ -31,7 +31,7 @@ git diff --check
 Resultado esperado:
 
 ```text
-13 passed
+15 passed
 ```
 
 Para levantar la API:
@@ -88,7 +88,7 @@ La tabla debe existir con el esquema de [sql/create_tables.sql](../sql/create_ta
 Estas verificaciones requieren credenciales y servicios externos; no deben marcarse como aprobadas por tener pruebas unitarias verdes:
 
 - Consulta real contra BigQuery.
-- Carga de la geometría oficial de INEGI.
+- Consulta real contra la tabla de municipios en BigQuery.
 - Carga de Google Maps JavaScript API.
 - Respuesta WMS de INEGI en navegador.
 - Build y ejecución Docker.
@@ -104,3 +104,12 @@ La API está lista para copiar y configurar cuando:
 4. `/api/nearby` devuelve el resultado determinista esperado.
 5. En modo BigQuery, faltantes de configuración producen un error explícito.
 6. Las credenciales reales se inyectan por entorno y no se agregan al repositorio.
+
+## Actualizar la geometría oficial
+
+```powershell
+python scripts/fetch_municipality.py
+pytest -q
+```
+
+El script valida que INEGI devuelva exactamente el municipio `05030`, llamado Saltillo, con una geometría `Polygon` o `MultiPolygon`. Conserva la respuesta original y genera el archivo normalizado que consume la API.
