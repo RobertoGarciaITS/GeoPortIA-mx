@@ -1,0 +1,11 @@
+business_id,source_record_id,name,scian,economic_activity,employee_range,latitude,longitude,municipality_id,source
+saltillo-001,DENUE-FIX-001,Panadería Alameda,311812,Panificación industrial,0-5,25.4380,-100.9730,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-002,DENUE-FIX-002,Café Centro,722515,Cafeterías,6-10,25.4400,-100.9700,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-003,DENUE-FIX-003,Ferretería República,467111,Comercio al por menor en ferreterías,11-30,25.4420,-100.9780,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-004,DENUE-FIX-004,Restaurante Fundadores,722511,Restaurantes con servicio de preparación de alimentos,6-10,25.4300,-100.9800,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-005,DENUE-FIX-005,Farmacia Madero,464111,Farmacias sin minisúper,11-30,25.4500,-100.9650,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-006,DENUE-FIX-006,Taller La Aurora,811111,Reparación mecánica,0-5,25.4250,-100.9900,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-007,DENUE-FIX-007,Supermercado República,462111,Comercio al por menor en supermercados,31-50,25.4550,-100.9850,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-008,DENUE-FIX-008,Óptica Victoria,464121,Comercio al por menor de lentes,0-5,25.4200,-100.9700,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-009,DENUE-FIX-009,Consultorio Alameda,621111,Consultorios de medicina general,0-5,25.4650,-100.9500,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
+saltillo-010,DENUE-FIX-010,Imprenta del Norte,323111,Impresión,6-10,25.4100,-100.9950,MEX-COA-SALTILLO,DENUE fixture / INEGI provenance
