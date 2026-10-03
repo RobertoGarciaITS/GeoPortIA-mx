@@ -124,6 +124,20 @@ El caso determinista usa `lat=25.438`, `lng=-100.973`, `radius_m=2000` y espera 
 
 Para ejecutar la matriz QA, revisar [docs/API_QA.md](docs/API_QA.md).
 
+## Integración laboral INEGI
+
+La integración reproducible de inteligencia laboral está documentada en [docs/INEGI_LABOR_INTEGRATION.md](docs/INEGI_LABOR_INTEGRATION.md). Incluye cliente DENUE con token por entorno, lector de extractos ENOE, pruebas unitarias con fixtures y smoke test real opt-in. El ejemplo de oferta/demanda AWS para Saltillo es sintético y está marcado como tal.
+La evidencia de ejecución se encuentra en [docs/INEGI_VERIFICATION.md](docs/INEGI_VERIFICATION.md).
+
+Comparación sintética de ciudades: `python scripts/compare_city_labor_examples.py`.
+Para generar mapa, tabla, gráficos y filtros: `python scripts/generate_city_labor_dashboard.py`. La especificación está en [docs/CITY_LABOR_COMPARISON.md](docs/CITY_LABOR_COMPARISON.md).
+El diseño, alcance y criterios de aceptación del MVP Intelligence Map están en [docs/INTELLIGENCE_MAP_MVP.md](docs/INTELLIGENCE_MAP_MVP.md).
+El flujo de desarrollo en Codespaces y despliegue de la API en GCP está en [docs/CODESPACES_GCP_DEPLOYMENT.md](docs/CODESPACES_GCP_DEPLOYMENT.md).
+El Dev Container está optimizado para el free tier de Codespaces: las pruebas y artefactos corren allí; el build Docker se reserva para Cloud Build.
+La especificación de capacidades y herramientas de backend, frontend, datos, Codespaces y GCP está en [docs/TECHNICAL_CAPABILITIES_AND_TOOLS.md](docs/TECHNICAL_CAPABILITIES_AND_TOOLS.md).
+La tabla de funciones, posicionamiento y prompt para investigación competitiva está en [docs/MARKET_POSITIONING_AND_COMPETITOR_RESEARCH.md](docs/MARKET_POSITIONING_AND_COMPETITOR_RESEARCH.md).
+El mapa competitivo verificado y la lista inicial de competidores están en [docs/COMPETITOR_LANDSCAPE.md](docs/COMPETITOR_LANDSCAPE.md).
+
 ## Documentación oficial de referencia
 
 ### Cartografía y APIs de INEGI
