@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "rows": [
+    {"country":"México","state":"Coahuila de Zaragoza","city":"Saltillo","skill":"AWS","available_talent":3,"demand":8,"deficit":5,"scarcity_index":2.6666666666666665,"expected_result":"Escasez alta","synthetic":true},
+    {"country":"México","state":"Nuevo León","city":"Monterrey","skill":"AWS","available_talent":10,"demand":18,"deficit":8,"scarcity_index":1.8,"expected_result":"Escasez moderada","synthetic":true},
+    {"country":"México","state":"Jalisco","city":"Guadalajara","skill":"AWS","available_talent":15,"demand":12,"deficit":-3,"scarcity_index":0.8,"expected_result":"Equilibrio o superávit","synthetic":true}
+  ]
+}

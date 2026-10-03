@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeoPortIA labor indicator v1",
+  "type": "object",
+  "required": ["schema_version", "rows"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["country", "state", "city", "skill", "available_talent", "demand", "deficit", "scarcity_index", "expected_result", "synthetic"],
+        "properties": {
+          "country": {"type": "string"},
+          "state": {"type": "string"},
+          "city": {"type": "string"},
+          "skill": {"type": "string"},
+          "available_talent": {"type": "number", "minimum": 0},
+          "demand": {"type": "number", "minimum": 0},
+          "deficit": {"type": "number"},
+          "scarcity_index": {"type": ["number", "null"], "minimum": 0},
+          "expected_result": {"type": "string"},
+          "synthetic": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

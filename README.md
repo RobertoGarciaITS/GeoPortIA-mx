@@ -137,6 +137,7 @@ El Dev Container está optimizado para el free tier de Codespaces: las pruebas y
 La especificación de capacidades y herramientas de backend, frontend, datos, Codespaces y GCP está en [docs/TECHNICAL_CAPABILITIES_AND_TOOLS.md](docs/TECHNICAL_CAPABILITIES_AND_TOOLS.md).
 La tabla de funciones, posicionamiento y prompt para investigación competitiva está en [docs/MARKET_POSITIONING_AND_COMPETITOR_RESEARCH.md](docs/MARKET_POSITIONING_AND_COMPETITOR_RESEARCH.md).
 El mapa competitivo verificado y la lista inicial de competidores están en [docs/COMPETITOR_LANDSCAPE.md](docs/COMPETITOR_LANDSCAPE.md).
+El inventario y la política para separar código, datos y artefactos están en [docs/REPOSITORY_INVENTORY.md](docs/REPOSITORY_INVENTORY.md).
 
 ## Documentación oficial de referencia
 

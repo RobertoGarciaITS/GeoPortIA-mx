@@ -6,3 +6,12 @@ __pycache__/
 node_modules/
 dist/
 .coverage
+
+# Fuentes geoespaciales y paquetes externos locales; no subir a Git.
+794551163061_s/
+MxSIG/
+coah-QGis/
+nal-QGis/
+
+# Salidas generadas localmente; conservar el código generador y los fixtures.
+artifacts/

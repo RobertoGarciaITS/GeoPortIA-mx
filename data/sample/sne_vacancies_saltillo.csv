@@ -1,0 +1,9 @@
+vacancy_id,geography,title,skill,source,published_date
+SNE-FIX-001,Saltillo,Cloud Engineer,AWS,SNE_fixture,2026-09-01
+SNE-FIX-002,Saltillo,DevOps Engineer,AWS,SNE_fixture,2026-09-02
+SNE-FIX-003,Saltillo,Cloud Administrator,AWS,SNE_fixture,2026-09-03
+SNE-FIX-004,Saltillo,Cloud Security Analyst,AWS,SNE_fixture,2026-09-04
+SNE-FIX-005,Saltillo,AWS Developer,AWS,SNE_fixture,2026-09-05
+SNE-FIX-006,Saltillo,Solutions Architect,AWS,SNE_fixture,2026-09-06
+SNE-FIX-007,Saltillo,Platform Engineer,AWS,SNE_fixture,2026-09-07
+SNE-FIX-008,Saltillo,Site Reliability Engineer,AWS,SNE_fixture,2026-09-08
