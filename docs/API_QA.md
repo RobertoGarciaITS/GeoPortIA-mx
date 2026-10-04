@@ -31,7 +31,7 @@ git diff --check
 Resultado esperado:
 
 ```text
-15 passed
+30 passed
 ```
 
 Para levantar la API:

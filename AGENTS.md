@@ -2,11 +2,17 @@
 
 ## Objetivo
 
-GeoOpportunity MX V0.1 valida un vertical slice geoespacial: Saltillo, 10 negocios, una consulta de proximidad, una API REST y un mapa web. El contrato autoritativo es `GEOOPPORTUNITY-BASELINE-001`.
+GeoPortIA mantiene dos niveles de alcance:
+
+- `GEOOPPORTUNITY-BASELINE-001`: vertical slice geoespacial de Saltillo, 10 negocios, una consulta de proximidad, API REST y mapa web.
+- `GEOOPPORTUNITY-INTELLIGENCE-MAP-MVP-001`: extensión en construcción para relacionar territorio, empresas, talento, demanda y brechas laborales; su contrato está en `docs/MVP_SCOPE_CONTRACT_v0.2.md`.
+
+El baseline geoespacial sigue siendo el núcleo técnico validable. La extensión laboral no debe declararse productiva hasta cumplir sus criterios de evidencia.
 
 ## Reglas de alcance
 
-- Mantener el alcance V0.1: un municipio, diez negocios y una consulta espacial.
+- Mantener el alcance del baseline: un municipio, diez negocios y una consulta espacial.
+- Mantener la extensión laboral en modo fixture/controlado hasta validar fuentes reales, periodo, cobertura y metodología.
 - No agregar scoring, IA, machine learning, autenticación, pagos, Google Places, Google Routes, PostGIS, Redis, GKE, streaming, app móvil o cobertura nacional sin change request.
 - Si una mejora cambia fuentes, APIs, bases de datos, niveles geográficos o despliegue, documentar rationale, impacto y versión del baseline.
 - No declarar BigQuery, Google Maps o Cloud Run como operativos sin evidencia ejecutada.

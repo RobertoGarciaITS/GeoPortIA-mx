@@ -1,6 +1,6 @@
-# GeoOpportunity MX — Saltillo V0.1
+# GeoPortIA Intelligence Map — MVP de construcción
 
-Micro-MVP geoespacial: un municipio, diez negocios y una consulta reproducible de proximidad. El proyecto sigue el contrato `GEOOPPORTUNITY-BASELINE-001` y separa tres responsabilidades:
+GeoPortIA es un MVP de inteligencia geoespacial y laboral. Conserva un vertical slice geoespacial validable —Saltillo, diez negocios y una consulta de proximidad— y agrega una extensión en construcción para relacionar empresas, talento, demanda laboral y brechas de habilidades. El alcance autoritativo se encuentra en [docs/MVP_SCOPE_CONTRACT_v0.2.md](docs/MVP_SCOPE_CONTRACT_v0.2.md).
 
 ```text
 INEGI / DENUE → datos y cartografía oficial
@@ -11,7 +11,7 @@ React/Vite    → mapa, marcadores y resultados
 
 ## Estado del proyecto
 
-Implementado y publicado en `main`:
+### Núcleo geoespacial implementado localmente
 
 - API FastAPI con health check, municipio, negocios, detalle y proximidad.
 - Fixture controlado de exactamente 10 negocios.
@@ -22,7 +22,18 @@ Implementado y publicado en `main`:
 - Capa WMS municipal de INEGI: `Sitio_Inegi:Municipal`.
 - Dockerfile, Dev Container, CI y documentación de validación.
 
-Pendiente para declarar V0.1 validado: configurar credenciales GCP/Maps, cargar las tablas a BigQuery, ejecutar la integración real y publicar Cloud Run.
+### Extensión Intelligence Map en construcción
+
+- Cliente y normalización de DENUE.
+- Lectura de extractos ENOE y vacantes controladas.
+- Cálculo de oferta, demanda, déficit e índice de escasez.
+- Comparación sintética de Saltillo, Monterrey y Guadalajara.
+- Contrato de indicadores, pruebas y scripts de generación.
+- Dashboard HTML demostrativo con filtros, tabla, gráficos y mapa.
+
+Los datos laborales actuales son sintéticos o controlados. La extensión todavía no está conectada como endpoints laborales de la API ni como una vista del frontend React principal.
+
+Pendiente para declarar el MVP integrado validado: configurar credenciales GCP/Maps, validar fuentes reales, cargar BigQuery, conectar indicadores a API y frontend, ejecutar integración real y publicar staging en Cloud Run.
 
 ## Estructura
 
@@ -138,6 +149,10 @@ La especificación de capacidades y herramientas de backend, frontend, datos, Co
 La tabla de funciones, posicionamiento y prompt para investigación competitiva está en [docs/MARKET_POSITIONING_AND_COMPETITOR_RESEARCH.md](docs/MARKET_POSITIONING_AND_COMPETITOR_RESEARCH.md).
 El mapa competitivo verificado y la lista inicial de competidores están en [docs/COMPETITOR_LANDSCAPE.md](docs/COMPETITOR_LANDSCAPE.md).
 El inventario y la política para separar código, datos y artefactos están en [docs/REPOSITORY_INVENTORY.md](docs/REPOSITORY_INVENTORY.md).
+El contrato de alcance y definición del MVP está en [docs/MVP_SCOPE_CONTRACT_v0.2.md](docs/MVP_SCOPE_CONTRACT_v0.2.md).
+La tesis, hipótesis y pruebas de validación están en [docs/MVP_THESIS_VALIDATION.md](docs/MVP_THESIS_VALIDATION.md).
+La evaluación de la señal de oportunidad, nicho recomendado y piloto Coahuila–Nuevo León está en [docs/OPPORTUNITY_SIGNAL_ASSESSMENT.md](docs/OPPORTUNITY_SIGNAL_ASSESSMENT.md).
+La matriz cruzada de competidores, capacidades y propuesta de valor está en [docs/COMPETITOR_CROSS_MATRIX.md](docs/COMPETITOR_CROSS_MATRIX.md).
 
 ## Documentación oficial de referencia
 
@@ -173,4 +188,4 @@ El inventario y la política para separar código, datos y artefactos están en 
 
 ## Reglas de alcance
 
-V0.1 no incluye scoring, IA, autenticación, pagos, Google Places, Google Routes, PostGIS, Redis, GKE, streaming ni cobertura nacional. Cualquier expansión requiere un change request y una nueva versión del baseline.
+El baseline geoespacial `GEOOPPORTUNITY-BASELINE-001` no incluye scoring, IA, autenticación, pagos, Google Places, Google Routes, PostGIS, Redis, GKE, streaming ni cobertura nacional. La extensión laboral se gobierna por `GEOOPPORTUNITY-INTELLIGENCE-MAP-MVP-001`; cualquier expansión requiere un change request y una nueva versión del contrato.
